@@ -1,13 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import TableContainer from 'Components/table-container';
+import Table from 'Components/table';
 
+import 'Styles/app.scss';
+import 'Styles/bootstrap/bootstrap.css';
+import 'Styles/fontawesome/fontawesome.css';
 
 const RecordsetApp: React.FC<{}> = () => {
     return (
         <React.StrictMode>
             <div>This is recordset page and a table is below:</div>
-            <TableContainer />
+            <Table />
         </React.StrictMode>
     )
 }
