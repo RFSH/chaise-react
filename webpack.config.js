@@ -20,7 +20,9 @@ function getAppConfig(appName, folderName) {
             ],
             alias: {
                 Components: path.resolve(__dirname, "src", "components"),
-                Styles: path.resolve(__dirname, "src", "styles")
+                Styles: path.resolve(__dirname, "src", "styles"),
+                Vendor: path.resolve(__dirname, "src", "vendor"),
+                Utils: path.resolve(__dirname, "src", "utils"),
             }
         },
         devServer: {
