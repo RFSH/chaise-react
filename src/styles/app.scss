@@ -1,3 +1,20 @@
+//  added by me for react!
+.chaise-body {
+overflow: auto !important;
+padding-bottom: 20px;
+}
+
+.record-row {
+border-top: 1px solid #ccc;
+}
+
+.chaise-dropdown.dropdown {
+    display: inline-block;
+}
+
+
+
+// original app.css:
 body > .container {
   min-height: 100%;
   position: relative;
