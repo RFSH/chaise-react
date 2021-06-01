@@ -34,7 +34,7 @@ const TableContent: React.FC<any> = (props: any) => {
                     <td className="block action-btns">
                         <div className="chaise-btn-group">
                             <a type="button" className="view-action-button chaise-btn chaise-btn-tertiary chaise-btn-link icon-btn"
-                                href="https://dev.isrd.isi.edu/~ashafaei/chaise2/record">
+                                href="https://dev.isrd.isi.edu/~ashafaei/chaise-react/record">
                                 <span className="chaise-btn-icon chaise-icon chaise-view-details"></span>
                             </a>
                         </div>
