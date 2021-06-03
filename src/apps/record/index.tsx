@@ -19,7 +19,6 @@ const RecordApp: React.FC<{}> = (): JSX.Element => {
     const [rowName, setrowName] = useState();
     const [relatedReferences, setRelatedReferences] = useState();
 
-    const updatePage =
 
     useEffect(() => {
         console.log('index effect');

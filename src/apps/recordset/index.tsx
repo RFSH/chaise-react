@@ -11,31 +11,22 @@ import setup from 'Utils/setup'
 
 import Table from 'Components/table'
 import Displayname from 'Components/displayname'
+import { useAppDispatch, useAppSelector } from './../../hooks';
+import { store } from './../../store';
+import { Provider } from 'react-redux';
+import { decrement, increment } from 'Slices/counter-slice';
+import Facet from 'Components/facet';
 
 const RecordsetApp: React.FC<{}> = (): JSX.Element => {
+    // The `state` arg is correctly typed as `RootState` already
+    const count = useAppSelector((state) => state.counter.value)
+    const dispatch = useAppDispatch()
+
     const [reference, setReference] = useState(null);
-    const [facetApplied, setFacetApplied] = useState(false);
     const [displayname, setDisplayname] = useState();
 
-    const toggleFacet = () => {
-        if (reference == null) return;
-
-        setFacetApplied((prev) => {
-            // @ts-ignore: Object is possibly 'null'.
-            let filter = ["FACEBASE:1-4G4E"], fc = reference.facetColumns[2];
-            if (!prev) {
-                setReference(() => {
-                    return fc.addChoiceFilters(filter);
-                })
-            } else {
-                setReference(() => {
-                    return fc.removeChoiceFilters(filter)
-                })
-            }
-
-            return !prev;
-        });
-
+    const updateReference = (ref: any) => {
+        setReference(ref);
     }
 
     useEffect(() => {
@@ -46,8 +37,8 @@ const RecordsetApp: React.FC<{}> = (): JSX.Element => {
         setup().then((ERMrest) => {
             let url = "https://dev.isrd.isi.edu/ermrest/catalog/1/entity/isa:dataset";
 
-            return ERMrest.resolve(url, {cid: "migration"})
-        }).then( (response: any) => {
+            return ERMrest.resolve(url, { cid: "migration" })
+        }).then((response: any) => {
             let ref = response.contextualize.compact;
             setDisplayname(ref.displayname);
             setReference(ref);
@@ -58,7 +49,7 @@ const RecordsetApp: React.FC<{}> = (): JSX.Element => {
     });
 
     if (reference == null) {
-        return <div style={{margin: "10px auto"}}>Loading...</div>;
+        return <div style={{ margin: "10px auto" }}>Loading...</div>;
     }
 
     return (
@@ -67,11 +58,23 @@ const RecordsetApp: React.FC<{}> = (): JSX.Element => {
                 <Displayname value={displayname} />
             </h1>
             <div>
-                <input type="checkbox" checked={facetApplied} onChange={toggleFacet}/>
-                <label style={{fontWeight: "normal", marginLeft: "5px"}}> Gene: ABCA4</label>
+                <button
+                    aria-label="Increment value"
+                    onClick={() => dispatch(increment())}
+                >
+                    Increment
+                </button>
+                <span>{count}</span>
+                <button
+                    aria-label="Decrement value"
+                    onClick={() => dispatch(decrement())}
+                >
+                    Decrement
+                </button>
             </div>
+            <Facet reference={reference} updateReference={updateReference}/>
             <div className="main-body">
-              <Table reference={reference}/>
+                <Table reference={reference} />
             </div>
         </React.StrictMode>
     )
@@ -80,6 +83,8 @@ const RecordsetApp: React.FC<{}> = (): JSX.Element => {
 RecordsetApp.whyDidYouRender = true;
 
 ReactDOM.render(
-  <RecordsetApp />,
-  document.getElementById("recordset-app-root")
+    <Provider store={store}>
+        <RecordsetApp />
+    </Provider>,
+    document.getElementById("recordset-app-root")
 );

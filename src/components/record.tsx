@@ -1,5 +1,3 @@
-import React from 'react'
-
 import Displayname from 'Components/displayname'
 import Table from 'Components/table'
 
@@ -9,7 +7,7 @@ interface RecordProps  {
     relatedReferences: any
 }
 
-const Record: React.FC<any> = (props: RecordProps) => {
+function Record (props: RecordProps) {
     const renderRows = () => {
         return props.reference.columns.map((col: any, colIndex: number) => {
             const val = props.tuple.values[colIndex]

@@ -23,6 +23,7 @@ function getAppConfig(appName, folderName) {
                 Styles: path.resolve(__dirname, "src", "styles"),
                 Vendor: path.resolve(__dirname, "src", "vendor"),
                 Utils: path.resolve(__dirname, "src", "utils"),
+                Slices: path.resolve(__dirname, "src", "slices")
             }
         },
         devServer: {

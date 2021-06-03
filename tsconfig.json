@@ -24,7 +24,8 @@
             "Components/*": ["src/components/*"],
             "Styles/*": ["src/styles/*"],
             "Vendor/*": ["src/vendor/*"],
-            "Utils/*": ["src/utils/*"]
+            "Utils/*": ["src/utils/*"],
+            "Slices/*": ["src/slices/*"]
         }
     },
     "include": [
