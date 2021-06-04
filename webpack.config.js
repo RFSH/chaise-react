@@ -68,5 +68,6 @@ function getAppConfig(appName, folderName) {
 
 module.exports = [
     getAppConfig("recordset"),
-    getAppConfig("record")
+    getAppConfig("record"),
+    getAppConfig("recordedit")
 ]
